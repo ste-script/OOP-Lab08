@@ -29,6 +29,8 @@ public class MiniGUI {
     private static final int PROPORTION = 5;
     private final Random rng = new Random();
     private final JFrame frame = new JFrame(TITLE);
+    //01.02
+    private final JTextField textf = new JTextField();
 
     /**
      * 
@@ -46,7 +48,10 @@ public class MiniGUI {
         write.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                System.out.println(rng.nextInt());
+                final int i = rng.nextInt();
+                System.out.println(i);
+                //01.03
+                textf.setText(String.valueOf(i));
             }
         });
         // 01.01
@@ -56,8 +61,8 @@ public class MiniGUI {
         panel.add(write);
 
         //01.02
-        final JTextField textf = new JTextField();
         canvas.add(textf, BorderLayout.NORTH);
+
     }
 
     private void display() {
