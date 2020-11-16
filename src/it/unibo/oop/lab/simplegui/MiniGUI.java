@@ -13,6 +13,7 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.BoxLayout;
 
 /**
  * This class is a simple application that writes a random number on a file.
@@ -47,6 +48,11 @@ public class MiniGUI {
                 System.out.println(rng.nextInt());
             }
         });
+        // 01.01
+        final JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        canvas.add(panel, BorderLayout.CENTER);
+        panel.add(write);
     }
 
     private void display() {
@@ -62,6 +68,7 @@ public class MiniGUI {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / PROPORTION, sh / PROPORTION);
+        frame.pack();
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning
