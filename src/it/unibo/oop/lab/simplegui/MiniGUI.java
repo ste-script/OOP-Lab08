@@ -13,6 +13,7 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 
 /**
@@ -53,6 +54,10 @@ public class MiniGUI {
         panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
         canvas.add(panel, BorderLayout.CENTER);
         panel.add(write);
+
+        //01.02
+        final JTextField textf = new JTextField();
+        canvas.add(textf, BorderLayout.NORTH);
     }
 
     private void display() {
