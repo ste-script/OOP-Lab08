@@ -1,9 +1,16 @@
 package it.unibo.oop.lab.mvcio;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  * A very simple program using a graphical interface.
@@ -15,8 +22,8 @@ public final class SimpleGUI {
 
     /*
      * Once the Controller is done, implement this class in such a way that:
-     * 
-     * 1) It has a main method that starts the graphical application
+     */
+     /* 1) It has a main method that starts the graphical application
      * 
      * 2) In its constructor, sets up the whole view
      * 
@@ -51,12 +58,38 @@ public final class SimpleGUI {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / 2, sh / 2);
+        final JPanel panel = new JPanel(new BorderLayout());
+        frame.setContentPane(panel);
+        final JButton save = new JButton("Save");
+        final JTextArea textArea = new JTextArea();
+        panel.add(textArea, BorderLayout.CENTER);
+        panel.add(save, BorderLayout.SOUTH);
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
+        save.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent arg0) {
+                final Controller c = new Controller();
+                try {
+                    c.writeString(textArea.getText());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+    }
+
+    public static void main(final String... args) {
+        new SimpleGUI();
     }
 
 }
