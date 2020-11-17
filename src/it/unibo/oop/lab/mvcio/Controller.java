@@ -57,7 +57,7 @@ public class Controller {
      * System.getProperty("file.separator"). The combined use of those methods leads
      * to a software that runs correctly on every platform.
      */
-    Controller() {
+    public Controller() {
         final String filePath = System.getProperty("user.home") + System.getProperty("file.separator") + "output.txt";
         this.file = new File(filePath);
     }
