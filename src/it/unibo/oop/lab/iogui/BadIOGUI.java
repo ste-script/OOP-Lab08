@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Random;
@@ -15,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 
 /**
  * This class is a simple application that writes a random number on a file.
@@ -78,7 +81,12 @@ public class BadIOGUI {
 
             @Override
             public void actionPerformed(final ActionEvent arg0) {
-                   System.out.println("Works"); 
+                try (BufferedReader fr = new BufferedReader(new FileReader(PATH))) {
+                    System.out.println(fr.readLine());
+                } catch (IOException arg01) {
+                    JOptionPane.showMessageDialog(frame, arg01, "Error", JOptionPane.ERROR_MESSAGE);
+                    arg01.printStackTrace();
+                }
             }
 
         });
