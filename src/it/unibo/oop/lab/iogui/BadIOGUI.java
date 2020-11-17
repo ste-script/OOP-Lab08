@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Random;
 
@@ -42,10 +43,13 @@ public class BadIOGUI {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         canvas.setLayout(new BorderLayout());
         final JButton write = new JButton("Write on file");
+        //01.02
+        final JButton read =  new JButton("Read");
         canvas.add(write, BorderLayout.CENTER);
         //01.01
         canvas.add(panel, BorderLayout.CENTER);
         panel.add(write);
+        panel.add(read);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
@@ -68,6 +72,15 @@ public class BadIOGUI {
                     e1.printStackTrace();
                 }
             }
+        });
+
+        read.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent arg0) {
+                   System.out.println("Works"); 
+            }
+
         });
     }
 
